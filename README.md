@@ -11,26 +11,21 @@ Each provider gets one folder under `community_tools/`:
 ```text
 community_tools/
   <provider>/
-    README.md
-    pyproject.toml
-    src/<provider>_crewai_tool/
-      __init__.py
-      tool.py
-    examples/
-      basic.py
+    tool.py
+    requirements.txt
+    example.py
 ```
 
-`tool.py` subclasses `crewai.tools.BaseTool`. `examples/basic.py` shows the smallest way to call that tool from outside the provider package.
+`tool.py` subclasses `crewai.tools.BaseTool`. `requirements.txt` lists what that tool needs. `example.py` shows a direct call, then the same tool passed to an agent.
 
-See `community_tools/acme/` for a complete reference. It uses a local sample catalog, so it runs without API keys.
+See `community_tools/acme/` for the reference. Acme is a stand-in provider with a local catalog. Copy the folder into your project and install from its `requirements.txt`. This repository does not publish the tool.
 
 ## Run the reference example
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e "community_tools/acme[examples]"
-python community_tools/acme/examples/basic.py
+cd community_tools/acme
+pip install -r requirements.txt
+python example.py
 ```
 
 ## Contributing
