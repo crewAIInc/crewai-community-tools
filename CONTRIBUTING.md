@@ -6,26 +6,26 @@ Open one pull request per provider folder. CrewAI maintainers merge into this re
 
 ```text
 community_tools/<provider>/
-  README.md
-  pyproject.toml
-  src/<provider>_crewai_tool/__init__.py
-  src/<provider>_crewai_tool/tool.py
-  examples/basic.py
+  tool.py
+  requirements.txt
+  example.py
 ```
 
-- Subclass `crewai.tools.BaseTool`.
+- Subclass `crewai.tools.BaseTool` in `tool.py`.
 - Set `name`, `description`, and `args_schema`.
 - Implement `_run`.
 - Write `description` so an agent can tell when to call the tool.
-- Read secrets from environment variables. Do not commit keys, tokens, or `.env` files.
-- Document required environment variables and a local install command in the provider README.
-- Keep `examples/basic.py` small enough to show construction and one call.
+- List dependencies in `requirements.txt`.
+- In `example.py`, call the tool directly, then pass that same instance to an agent.
+- Read secrets from environment variables. Name them in a comment at the top of `example.py`. Do not commit keys, tokens, or `.env` files.
 
 ## What to leave out
 
+- Extra files beyond `tool.py`, `requirements.txt`, and `example.py`.
 - Changes to the main CrewAI repository.
 - A shared registry or auto-discovery mechanism.
 - Live API calls in CI.
 - Vendored copies of `crewai` or `crewai-tools`.
+- Package metadata, a workspace, or a published install path for the tool.
 
 Use `community_tools/acme/` as the pattern to copy.
