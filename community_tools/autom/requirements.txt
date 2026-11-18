@@ -1,0 +1,2 @@
+crewai>=0.150
+requests>=2.31
